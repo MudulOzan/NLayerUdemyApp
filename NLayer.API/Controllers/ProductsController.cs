@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using NLayer.Core;
 using NLayer.Core.DTOs;
-using NLayer.Core.Services;
+using NLayer.Service.Services;
 
 namespace NLayer.API.Controllers
 {
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
+        private readonly Service<Product> _service;
 
-        public ProductsController(IMapper mapper, IService<Product> service)
+        public ProductsController(IMapper mapper, Service<Product> service)
         {
             _mapper = mapper;
             _service = service;
