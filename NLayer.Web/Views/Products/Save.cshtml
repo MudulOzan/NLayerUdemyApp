@@ -2,7 +2,6 @@
     ViewData["Title"] = "Save";
 }
 @model ProductDto
-
 <h1>Save Product</h1>
 
 <div class="row">
@@ -30,7 +29,10 @@
 
             <div class="form-group">
                 <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control"></select>
+                <select asp-for="CategoryId" asp-items="ViewBag.categories" class="form-control">
+                    <option value="0" selected>Choose</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
