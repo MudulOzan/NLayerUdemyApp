@@ -28,7 +28,7 @@ public class ProductServiceWithCaching : IProductService
 
         if (!_memoryCache.TryGetValue(CacheProductKey, out _))
         {
-            _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory());
+            _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
         }
 
         
@@ -111,4 +111,5 @@ public class ProductServiceWithCaching : IProductService
     {
         _memoryCache.Set(CacheProductKey, _repository.GetAll().ToListAsync());
     }
+
 }
