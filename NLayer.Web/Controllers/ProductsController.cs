@@ -78,9 +78,9 @@ namespace NLayer.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var categories = await _categoryService.GetAllAsync();,
+            var categories = await _categoryService.GetAllAsync();
 
-                        var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
+            var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
 
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
 
