@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
+using System.Linq.Expressions;
 
 namespace NLayer.Service.Services
 {
     public class Service<T> : IService<T> where T : class
-	{
+    {
         private readonly IGenericRepository<T> _repository;
         private readonly IUnitOfWork _unitOfWork;
 
@@ -48,7 +47,7 @@ namespace NLayer.Service.Services
         {
             var hasProduct = await _repository.GetByIdAsync(id);
 
-            if(hasProduct == null) 
+            if (hasProduct == null)
             {
                 throw new ClientsideException($"{typeof(T).Name}({id}) not found");
             }

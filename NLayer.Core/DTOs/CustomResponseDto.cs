@@ -1,15 +1,13 @@
-﻿
-using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace NLayer.Core.DTOs
 {
-	public class CustomResponseDto<T>
-	{
-		public T Data { get; set; }
-		[JsonIgnore]
-		public int StatusCode { get; set; }
-		public List<String> Errors { get; set; }
+    public class CustomResponseDto<T>
+    {
+        public T Data { get; set; }
+        [JsonIgnore]
+        public int StatusCode { get; set; }
+        public List<String> Errors { get; set; }
 
         public static CustomResponseDto<T> Success(int statusCode, T data)
         {

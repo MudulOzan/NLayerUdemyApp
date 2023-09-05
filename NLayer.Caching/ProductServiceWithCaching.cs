@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using NLayer.Core;
@@ -8,6 +7,7 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
 using NLayer.Service;
+using System.Linq.Expressions;
 
 namespace NLayer.Caching;
 
@@ -31,7 +31,7 @@ public class ProductServiceWithCaching : IProductService
             _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
         }
 
-        
+
     }
 
     public async Task<Product> AddAsync(Product entity)
@@ -64,7 +64,7 @@ public class ProductServiceWithCaching : IProductService
     {
         var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
 
-        if(product == null)
+        if (product == null)
         {
             throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
         }

@@ -1,11 +1,10 @@
-﻿using System;
-using NLayer.Core.DTOs;
+﻿using NLayer.Core.DTOs;
 
 namespace NLayer.Core.Services
 {
     public interface IProductService : IService<Product>
-	{
+    {
         Task<List<ProductWithCategory>> GetProductsWithCategory();
-	}
+    }
 }
 
