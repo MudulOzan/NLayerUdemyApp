@@ -56,6 +56,7 @@ namespace NLayer.Web.Controllers
             return View();
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var product = await _service.GetByIdAsync(id);
@@ -66,7 +67,7 @@ namespace NLayer.Web.Controllers
 
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", product.CategoryId);
 
-            return View(_mapper.Map<ProductDto>(product)); 
+            return View(_mapper.Map<ProductDto>(product));
         }
 
         [HttpPost]
