@@ -72,13 +72,13 @@ public class ProductServiceWithCaching : IProductService
         return Task.FromResult(product);
     }
 
-    public Task<List<ProductWithCategory>> GetProductsWithCategory()
+    public Task<CustomResponseDto<List<ProductWithCategory>>> GetProductsWithCategory()
     {
         var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
 
         var productsWithCategoryDto = _mapper.Map<List<ProductWithCategory>>(products);
 
-        return Task.FromResult(productsWithCategoryDto);
+        return Task.FromResult(CustomResponseDto<List<ProductWithCategory>>.Success(200, productsWithCategoryDto));
     }
 
     public async Task RemoveAsync(Product entity)
