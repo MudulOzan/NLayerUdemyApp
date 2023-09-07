@@ -1,22 +1,23 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using NLayer.Core.DTOs;
 using NLayer.Service;
+using System.Text.Json;
 
 namespace NLayer.API;
 
 public static class UseCustomExceptionHandler
 {
-    public static void UseCustomException(this IApplicationBuilder app) {
-        app.UseExceptionHandler(config => 
-        { 
-            config.Run(async context => 
+    public static void UseCustomException(this IApplicationBuilder app)
+    {
+        app.UseExceptionHandler(config =>
+        {
+            config.Run(async context =>
             {
                 context.Response.ContentType = "applcation/json";
 
                 var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
 
-                var statusCode = exceptionFeature.Error switch 
+                var statusCode = exceptionFeature.Error switch
                 {
                     ClientsideException => 400,
                     NotFoundException => 404,
