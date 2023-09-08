@@ -10,5 +10,7 @@ namespace NLayer.Core.Services
 
         Task<CustomResponseDto<ProductDto>> AddAsync(ProductCreateDto dto);
 
+        Task<CustomResponseDto<IEnumerable<ProductDto>>> AddRangedAsync(IEnumerable<ProductCreateDto> dtos);
+
     }
 }
