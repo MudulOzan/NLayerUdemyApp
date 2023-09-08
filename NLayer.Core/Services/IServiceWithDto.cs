@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace NLayer.Core.Services
 {
-    public interface IProductServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
+    public interface IServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
     {
         Task<CustomResponseDto<Dto>> GetByIdAsync(int id);
         Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync();

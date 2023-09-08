@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace NLayer.Service.Services
 {
-    public class ServiceWithDto<Entity, Dto> : IProductServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
+    public class ServiceWithDto<Entity, Dto> : IServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
     {
         private readonly IGenericRepository<Entity> _repository;
         protected readonly IUnitOfWork _unitOfWork;
@@ -75,6 +75,7 @@ namespace NLayer.Service.Services
             var entity = await _repository.GetByIdAsync(id);
 
             _repository.Remove(entity);
+            await _unitOfWork.CommitAsync();
 
             return CustomResponseDto<NoContentDto>.Success(StatusCodes.Status204NoContent);
         }
@@ -84,6 +85,7 @@ namespace NLayer.Service.Services
             var entities = await _repository.Where(x => ids.Contains(x.Id)).ToListAsync();
 
             _repository.RemoveRanged(entities);
+            await _unitOfWork.CommitAsync();
 
             return CustomResponseDto<NoContentDto>.Success(StatusCodes.Status204NoContent);
         }
