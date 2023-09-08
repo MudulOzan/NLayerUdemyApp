@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace NLayer.Service.Services
 {
-    public class ServiceWithDto<Entity, Dto> : IServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
+    public class ServiceWithDto<Entity, Dto> : IProductServiceWithDto<Entity, Dto> where Entity : BaseEntity where Dto : class
     {
         private readonly IGenericRepository<Entity> _repository;
         protected readonly IUnitOfWork _unitOfWork;

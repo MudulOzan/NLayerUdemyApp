@@ -19,9 +19,12 @@ public class RepoServiceModule : Module
     {
         builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
         builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
-        builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IProductServiceWithDto<,>)).InstancePerLifetimeScope();
 
-        builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+        builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
+        builder.RegisterType<ProductServiceWithDto>().As<IProductServiceWithDto>().InstancePerLifetimeScope();
+
 
         var api = Assembly.GetExecutingAssembly();
         var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
