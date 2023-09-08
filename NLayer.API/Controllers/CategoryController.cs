@@ -13,7 +13,8 @@ public class CategoryController : CustomBaseController
     }
 
     [HttpGet("[action]/{categoryId}")]
-    public async Task<IActionResult> GetSingleCategoryByIdWithProduct(int categoryId) {
+    public async Task<IActionResult> GetSingleCategoryByIdWithProduct(int categoryId)
+    {
         return CreateActionResult(await _categoryService.GetSingleCategoryByIdWithProductAsync(categoryId));
-    }    
+    }
 }

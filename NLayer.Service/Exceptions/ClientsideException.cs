@@ -2,8 +2,8 @@
 
 public class ClientsideException : Exception
 {
-    public ClientsideException(string message) : base(message) 
+    public ClientsideException(string message) : base(message)
     {
 
-    } 
+    }
 }

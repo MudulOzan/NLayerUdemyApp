@@ -1,5 +1,4 @@
-﻿	using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NLayer.Core;
 using NLayer.Core.Repositories;
 

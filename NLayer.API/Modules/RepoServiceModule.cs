@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using NLayer.Caching;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
@@ -9,6 +8,7 @@ using NLayer.Repository.Repositories;
 using NLayer.Repository.UnitOfWorks;
 using NLayer.Service.Mapping;
 using NLayer.Service.Services;
+using System.Reflection;
 using Module = Autofac.Module;
 
 namespace NLayer.API;
@@ -19,6 +19,7 @@ public class RepoServiceModule : Module
     {
         builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
         builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();
 
         builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
@@ -28,7 +29,7 @@ public class RepoServiceModule : Module
 
         builder.RegisterAssemblyTypes(api, repoAssembly, serviceAssembly)
         .Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
-        
+
         builder.RegisterAssemblyTypes(api, repoAssembly, serviceAssembly)
         .Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 

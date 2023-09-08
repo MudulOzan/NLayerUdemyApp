@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.IdentityModel.Tokens;
 using NLayer.Core;
 using NLayer.Core.DTOs;
 using NLayer.Core.Services;
-using NLayer.Service;
 
 namespace NLayer.API;
 
@@ -22,7 +20,7 @@ public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
 
         var idValue = context.ActionArguments.Values.FirstOrDefault();
 
-        if (idValue == null) 
+        if (idValue == null)
         {
             await next.Invoke();
             return;
@@ -31,7 +29,8 @@ public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
         var id = (int)idValue;
         var anyEntity = await _service.AnyAsync(x => x.Id == id);
 
-        if (anyEntity) {
+        if (anyEntity)
+        {
             await next.Invoke();
             return;
         }
